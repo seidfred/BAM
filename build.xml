@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<project name="BAM_BankAccountManager" default="main" basedir=".">
+	<!-- Sets variables which can later be used. -->
+	<!-- The value of a property is accessed via ${} -->
+	<property name="src.dir" location="src" />
+	<property name="generated.dir" location="generated" />
+	<property name="build.dir" location="build" />
+
+	<target name="clean">
+		<delete dir="${generated.dir}" />
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="makedir">
+		<mkdir dir="${generated.dir}" />
+		<mkdir dir="${build.dir}" />
+	</target>
+
+	<path id="BAM_BankAccountManager.classpath">
+		<fileset dir="../../../" includes="**/*.jar" />
+	</path>
+
+	<!-- APT based code generation -->
+	<target name="generate" depends="clean, makedir">
+		<javac srcdir="${src.dir}" classpathref="BAM_BankAccountManager.classpath">
+			<compilerarg value="-proc:only" />
+			<compilerarg value="-processor" />
+			<compilerarg value="com.mysema.query.apt.jpa.JPAAnnotationProcessor" />
+			<compilerarg value="-s" />
+			<compilerarg value="${generated.dir}" />
+		</javac>
+	</target>
+
+
+	<!-- compilation -->
+	<target name="compile" depends="generate">
+		<javac classpathref="BAM_BankAccountManager.classpath" destdir="${build.dir}">
+			<src path="${src.dir}" />
+			<src path="${generated.dir}" />
+		</javac>
+	</target>
+
+	<target name="main" depends="compile">
+		<description>Main target</description>
+	</target>
+
+</project>

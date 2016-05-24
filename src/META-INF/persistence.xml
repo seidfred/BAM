@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence persistence_2_0.xsd"
+	version="2.0">
+	<persistence-unit name="BAM" transaction-type="RESOURCE_LOCAL">
+		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl
+		</provider>
+		<class>de.seidfred.bam.model.entity.Account</class>
+		<class>de.seidfred.bam.model.entity.FixValues</class>
+		<class>de.seidfred.bam.model.entity.Transaction</class>
+
+		<class>de.seidfred.bam.model.attribute.Description</class>
+		<class>de.seidfred.bam.model.attribute.Identity</class>
+		<class>de.seidfred.bam.model.attribute.AccountName</class>
+
+		<class>de.seidfred.bam.model.attribute.TransactionAmount</class>
+		<class>de.seidfred.bam.model.attribute.TransactionDate</class>
+		<class>de.seidfred.bam.model.attribute.Usage</class>
+		<class>de.seidfred.bam.model.attribute.FixValue</class>
+
+		<class>de.seidfred.bam.rdm.BigDecimalValueObject</class>
+		<class>de.seidfred.bam.rdm.BooleanValueObject</class>
+		<class>de.seidfred.bam.rdm.DateValueObject</class>
+		<class>de.seidfred.bam.rdm.IntegerValueObject</class>
+		<class>de.seidfred.bam.rdm.ShortValueObject</class>
+		<class>de.seidfred.bam.rdm.StringValueObject</class>
+		<class>de.seidfred.bam.rdm.TimestampValueObject</class>
+		<class>de.seidfred.bam.rdm.UuidValueObject</class>
+		
+		<properties>
+			<property name="openjpa.jdbc.DBDictionary" value="hsql" />
+			<property name="openjpa.ConnectionURL" value="jdbc:hsqldb:file:test/seidfred/BAM" />
+			<property name="openjpa.ConnectionDriverName" value="org.hsqldb.jdbcDriver" />
+			<property name="openjpa.ConnectionUserName" value="SA" />
+			<property name="openjpa.ConnectionPassword" value="" />
+			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema" />
+			<property name="openjpa.Log"
+				value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE" />
+			<property name="openjpa.ConnectionFactoryProperties" 
+    			value="PrettyPrint=true, PrettyPrintLineLength=72, PrintParameters=True" />
+		</properties>
+
+	</persistence-unit>
+</persistence>
